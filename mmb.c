@@ -18,7 +18,20 @@ int min(int a, int b) {
     return a < b ? a : b;
 }
 
-int main() {
+void printUsage() {
+    puts("usage: ./mmb [N] []");
+}
+
+int main(int argc, char* argv[]) {
+
+    printf("Argument count is: %d\n", argc);
+
+    puts("Arguments are\n");
+    for(u_int32_t i=0;i<argc; ++i) {
+        puts(argv[i]);
+    }
+
+    //exit(0);
 
     double cpu_time_used;
     clock_t start_time, end_time;
@@ -33,15 +46,13 @@ int main() {
     int mode; // 1 = A*A, 2  = A(t) * A, 3 = A* A(t), 4 = A(t) * A(t)
     int test_count;
 
-    printf("Introduceti dimensiunea matricei si modul (1 = A*A, 2  = A(t) * A, 3 = A* A(t), 4 = A(t) * A(t)):");
 
 
-    scanf("%d", &N);
-    scanf("%d", &mode);
+    N = atoi(argv[1]);
+    mode = atoi(argv[2]);
 
-    printf("Introduceti nr de teste si dimensiunea block-ului(pt calcul pe blocuri):");
-    scanf("%d", &test_count);
-    scanf("%d", &BLOCK_SIZE);
+    test_count = atoi(argv[3]);
+    BLOCK_SIZE = atoi(argv[4]);
 
     long long ** A = (long long **) malloc (N * sizeof(long long*));
     for(int i=0;i<N;i++) {
@@ -56,13 +67,9 @@ int main() {
     for (int test_idx = 0; test_idx < test_count; test_idx++) {
 
     score_idx = 0;
-    score[0] = 0;
-    score[1] = 0;
-    score[2] = 0;
-    score[3] = 0;
-    score[4] = 0;
-    score[5] = 0;
-    score[6] = 0;
+    for(u_int32_t i = 0; i<7; i++) {
+        score[i] = 0;
+    }
 
     if(mode == 1)
     outfile = fopen("data_axa.csv", "a");
@@ -155,8 +162,6 @@ int main() {
 
     printf("N=%d\n", N);
 
-    //exit(0);
-    printf("===============VAR1==============\n");
 
 
     if(N<=25)
@@ -169,7 +174,6 @@ int main() {
         printf("\n");
     }
 
-        printf("===============VAR1==============\n");
 
 
     for(int i=0;i<N;++i)
@@ -239,9 +243,7 @@ int main() {
     score_idx++;
 
 
-    printf("N=%d\n", N);
 
-    printf("===============VAR2==============\n");
 
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
@@ -252,7 +254,6 @@ int main() {
     //     printf("\n");
     // }
 
-        printf("===============VAR2==============\n");
 
 
 
@@ -326,7 +327,6 @@ int main() {
 
     printf("N=%d\n", N);
 
-    printf("===============VAR3==============\n");
 
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
@@ -337,7 +337,6 @@ int main() {
     //     printf("\n");
     // }
 
-        printf("===============VAR3==============\n");
 
 
 
@@ -409,9 +408,7 @@ int main() {
     score_idx++;
 
 
-    printf("N=%d\n", N);
 
-    printf("===============VAR4==============\n");
 
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
@@ -422,7 +419,6 @@ int main() {
     //     printf("\n");
     // }
 
-        printf("===============VAR4==============\n");
 
 
     for(int i=0;i<N;++i)
@@ -492,9 +488,7 @@ int main() {
 
 
 
-    printf("N=%d\n", N);
 
-    printf("===============VAR5==============\n");
 
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
@@ -505,7 +499,6 @@ int main() {
     //     printf("\n");
     // }
 
-        printf("===============VAR5==============\n");
 
 
     for(int i=0;i<N;++i)
@@ -573,9 +566,7 @@ int main() {
     score_idx++;
 
 
-    printf("N=%d\n", N);
 
-    printf("===============VAR6==============\n");
 
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
@@ -586,7 +577,6 @@ int main() {
     //     printf("\n");
     // }
 
-        printf("===============VAR6==============\n");
 
 
 
@@ -633,22 +623,6 @@ int main() {
     score_idx++;
 
 
-
-    if(N<=25)
-    for(int i=0;i<N;++i) {
-        for(int j=0;j<N;++j)
-        {
-
-            printf("%lld ", X[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("N=%d\n", N);
-
-    //exit(0);
-    printf("===============VAR6==============\n");
-
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
     //     {
@@ -658,7 +632,6 @@ int main() {
     //     printf("\n");
     // }
 
-        printf("===============VAR6==============\n");
 
 
 

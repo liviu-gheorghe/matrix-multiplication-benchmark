@@ -638,7 +638,8 @@ int main(int argc, char* argv[]) {
 
     fprintf(
         outfile,
-        "%lld,%lld,%lld,%lld,%lld,%lld,%lld,%f,%f,%f,%f,%f,%f,%f\n",
+        "%d %lld,%lld,%lld,%lld,%lld,%lld,%lld,%f,%f,%f,%f,%f,%f,%f %d\n",
+        N,
         score[0],
         score[1],
         score[2],
@@ -652,7 +653,8 @@ int main(int argc, char* argv[]) {
         time_arr[3],
         time_arr[4],
         time_arr[5],
-        time_arr[6]
+        time_arr[6],
+        BLOCK_SIZE
     );
 
 

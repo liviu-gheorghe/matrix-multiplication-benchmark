@@ -31,7 +31,6 @@ int main(int argc, char* argv[]) {
         puts(argv[i]);
     }
 
-    //exit(0);
 
     double cpu_time_used;
     clock_t start_time, end_time;
@@ -45,8 +44,6 @@ int main(int argc, char* argv[]) {
     int BLOCK_SIZE;
     int mode; // 1 = A*A, 2  = A(t) * A, 3 = A* A(t), 4 = A(t) * A(t)
     int test_count;
-
-
 
     N = atoi(argv[1]);
     mode = atoi(argv[2]);
@@ -106,7 +103,6 @@ int main(int argc, char* argv[]) {
     for(int j=0;j<N;++j)
     for(int k=0;k<N;++k)
     {
-
         switch(mode) {
             case 1:
             X[i][j] += A[i][k] * A[k][j];
@@ -147,7 +143,6 @@ int main(int argc, char* argv[]) {
             default:
             break;
         }
-
     }
 
     end_time = clock();
@@ -159,22 +154,14 @@ int main(int argc, char* argv[]) {
 
     score_idx++;
 
-
-    printf("N=%d\n", N);
-
-
-
     if(N<=25)
     for(int i=0;i<N;++i) {
         for(int j=0;j<N;++j)
         {
-
             printf("%lld ", X[i][j]);
         }
         printf("\n");
     }
-
-
 
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
@@ -242,9 +229,6 @@ int main(int argc, char* argv[]) {
     printf("Scorul pt var2 (jik) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
-
-
-
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
     //     {
@@ -253,9 +237,6 @@ int main(int argc, char* argv[]) {
     //     }
     //     printf("\n");
     // }
-
-
-
 
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
@@ -324,10 +305,6 @@ int main(int argc, char* argv[]) {
     printf("Scorul pt var3 (kij) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
-
-    printf("N=%d\n", N);
-
-
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
     //     {
@@ -337,13 +314,9 @@ int main(int argc, char* argv[]) {
     //     printf("\n");
     // }
 
-
-
-
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
         X[i][j] = 0;
-
 
     //VAR 4
 
@@ -354,7 +327,6 @@ int main(int argc, char* argv[]) {
     for(int j=0;j<N;++j)
     for(int i=0;i<N;++i)
     {
-
         switch(mode) {
             case 1:
             X[i][j] += A[i][k] * A[k][j];
@@ -395,7 +367,6 @@ int main(int argc, char* argv[]) {
             default:
             break;
         }
-
     }
 
     end_time = clock();
@@ -403,12 +374,8 @@ int main(int argc, char* argv[]) {
     cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     time_arr[score_idx] = cpu_time_used;
 
-
     printf("Scorul pt var4 (kji) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
-
-
-
 
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
@@ -419,13 +386,9 @@ int main(int argc, char* argv[]) {
     //     printf("\n");
     // }
 
-
-
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
         X[i][j] = 0;
-
-
 
     //VAR 5
 
@@ -435,7 +398,6 @@ int main(int argc, char* argv[]) {
     for(int k=0;k<N;++k)
     for(int j=0;j<N;++j)
     {
-
         switch(mode) {
             case 1:
             X[i][j] += A[i][k] * A[k][j];
@@ -486,10 +448,6 @@ int main(int argc, char* argv[]) {
     printf("Scorul pt var5 (ikj) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
-
-
-
-
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
     //     {
@@ -499,12 +457,9 @@ int main(int argc, char* argv[]) {
     //     printf("\n");
     // }
 
-
-
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
         X[i][j] = 0;
-
 
     //VAR 6
 
@@ -565,9 +520,6 @@ int main(int argc, char* argv[]) {
     printf("Scorul pt var6 (jki) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
-
-
-
     // for(int i=0;i<N;++i) {
     //     for(int j=0;j<N;++j)
     //     {
@@ -576,10 +528,6 @@ int main(int argc, char* argv[]) {
     //     }
     //     printf("\n");
     // }
-
-
-
-
 
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
@@ -633,9 +581,6 @@ int main(int argc, char* argv[]) {
     // }
 
 
-
-
-
     fprintf(
         outfile,
         "%d %lld,%lld,%lld,%lld,%lld,%lld,%lld,%f,%f,%f,%f,%f,%f,%f %d\n",
@@ -657,10 +602,8 @@ int main(int argc, char* argv[]) {
         BLOCK_SIZE
     );
 
-
     fclose(outfile);
 
     }
-
     return 0;
 }

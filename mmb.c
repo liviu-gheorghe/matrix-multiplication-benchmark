@@ -1,17 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 unsigned long long score[] = {0,0,0,0,0,0,0};
 double time_arr[] = {0,0,0,0,0,0,0};
 
 int randNumber(int start, int end) {
-
     return rand() % (end - start + 1) + start;
-}
-
-int max(int a, int b) {
-    return a > b ? a : b;
 }
 
 int min(int a, int b) {
@@ -19,18 +15,22 @@ int min(int a, int b) {
 }
 
 void printUsage() {
-    puts("usage: ./mmb [N] []");
+    puts(
+         "utilizare: ./mmb <N> <mode> <test_count> <block_size> <outfile>\n"
+         "\tN = dimensiunea matricei\n"
+         "\tmode = tipul de inmultire -> 1 pt A*A, 2 pt A(t)*A, 3 pt A*A(t), 4 pt A(t)*A(t)\n"
+         "\ttest_count = numarul de teste\n"
+         "\tblock_size = dimensiunea blocului pt inmultirea block to block\n"
+         "\toutfile = fisierul in care se vor scrie datele\n"
+    );
 }
 
 int main(int argc, char* argv[]) {
 
-    printf("Argument count is: %d\n", argc);
-
-    puts("Arguments are\n");
-    for(u_int32_t i=0;i<argc; ++i) {
-        puts(argv[i]);
+    if(argc < 6 || !strcmp("--help", argv[1])) {
+        printUsage();
+        exit(0);
     }
-
 
     double cpu_time_used;
     clock_t start_time, end_time;
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
 
     int N;
     int BLOCK_SIZE;
-    int mode; // 1 = A*A, 2  = A(t) * A, 3 = A* A(t), 4 = A(t) * A(t)
+    int mode;
     int test_count;
 
     N = atoi(argv[1]);
@@ -68,29 +68,13 @@ int main(int argc, char* argv[]) {
         score[i] = 0;
     }
 
-    if(mode == 1)
-    outfile = fopen("data_axa.csv", "a");
-    else if(mode == 2)
-    outfile = fopen("data_a(t)xa.csv", "a");
-    else if(mode == 3)
-    outfile = fopen("data_axa(t).csv", "a");
-    else if(mode == 4)
-    outfile = fopen("data_a(t)xa(t).csv", "a");
-    else printf("Mod incorect");
+    outfile = fopen(argv[5], "a");
 
     for(int i=0;i<N;++i) {
         for (int j = 0; j < N; ++j) {
             A[i][j] = randNumber(1, 0xA);
             X[i][j] = 0;
         }
-    }
-
-   if(N<=25)
-    for(int i=0;i<N;++i) {
-        for(int j=0;j<N;++j) {
-            printf("%lld ", A[i][j]);
-        }
-        printf("\n");
     }
 
     //VAR 1
@@ -229,15 +213,6 @@ int main(int argc, char* argv[]) {
     printf("Scorul pt var2 (jik) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
-    // for(int i=0;i<N;++i) {
-    //     for(int j=0;j<N;++j)
-    //     {
-
-    //         printf("%d ", X[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
         X[i][j] = 0;
@@ -305,15 +280,6 @@ int main(int argc, char* argv[]) {
     printf("Scorul pt var3 (kij) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
-    // for(int i=0;i<N;++i) {
-    //     for(int j=0;j<N;++j)
-    //     {
-
-    //         printf("%d ", X[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
         X[i][j] = 0;
@@ -377,15 +343,6 @@ int main(int argc, char* argv[]) {
     printf("Scorul pt var4 (kji) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
-    // for(int i=0;i<N;++i) {
-    //     for(int j=0;j<N;++j)
-    //     {
-
-    //         printf("%d ", X[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
         X[i][j] = 0;
@@ -447,15 +404,6 @@ int main(int argc, char* argv[]) {
     time_arr[score_idx] = cpu_time_used;
     printf("Scorul pt var5 (ikj) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
-
-    // for(int i=0;i<N;++i) {
-    //     for(int j=0;j<N;++j)
-    //     {
-
-    //         printf("%d ", X[i][j]);
-    //     }
-    //     printf("\n");
-    // }
 
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
@@ -520,15 +468,6 @@ int main(int argc, char* argv[]) {
     printf("Scorul pt var6 (jki) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
-    // for(int i=0;i<N;++i) {
-    //     for(int j=0;j<N;++j)
-    //     {
-
-    //         printf("%d ", X[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-
     for(int i=0;i<N;++i)
     for(int j=0;j<N;++j)
         X[i][j] = 0;
@@ -564,26 +503,14 @@ int main(int argc, char* argv[]) {
 
     end_time = clock();
 
-
     cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     time_arr[score_idx] = cpu_time_used;
     printf("Scorul pt var7 (Block) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
-
-    // for(int i=0;i<N;++i) {
-    //     for(int j=0;j<N;++j)
-    //     {
-
-    //         printf("%d ", X[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-
-
     fprintf(
         outfile,
-        "%d %lld,%lld,%lld,%lld,%lld,%lld,%lld,%f,%f,%f,%f,%f,%f,%f %d\n",
+        "%d,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%f,%f,%f,%f,%f,%f,%f,%d\n",
         N,
         score[0],
         score[1],

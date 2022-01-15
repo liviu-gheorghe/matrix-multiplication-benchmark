@@ -37,6 +37,7 @@ int main(int argc, char* argv[]) {
 
     int score_idx = 0;
     int prevA = 0, prevB = 0, prevX = 0;
+    char statsCliFormat[] = "Scorul pt var%d (%s) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n";
 
     FILE* outfile;
 
@@ -134,7 +135,7 @@ int main(int argc, char* argv[]) {
     cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     time_arr[score_idx] = cpu_time_used;
 
-    printf("Scorul pt var1 (ijk) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
+    printf(statsCliFormat,score_idx, "ijk", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
 
     score_idx++;
 
@@ -210,7 +211,7 @@ int main(int argc, char* argv[]) {
     cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     time_arr[score_idx] = cpu_time_used;
 
-    printf("Scorul pt var2 (jik) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
+    printf(statsCliFormat,score_idx, "jik", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
     for(int i=0;i<N;++i)
@@ -277,7 +278,7 @@ int main(int argc, char* argv[]) {
     cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     time_arr[score_idx] = cpu_time_used;
 
-    printf("Scorul pt var3 (kij) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
+    printf(statsCliFormat,score_idx, "kij", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
     for(int i=0;i<N;++i)
@@ -340,7 +341,7 @@ int main(int argc, char* argv[]) {
     cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     time_arr[score_idx] = cpu_time_used;
 
-    printf("Scorul pt var4 (kji) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
+    printf(statsCliFormat,score_idx, "kji", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
     for(int i=0;i<N;++i)
@@ -402,7 +403,7 @@ int main(int argc, char* argv[]) {
 
     cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     time_arr[score_idx] = cpu_time_used;
-    printf("Scorul pt var5 (ikj) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
+    printf(statsCliFormat,score_idx, "ikj", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
     for(int i=0;i<N;++i)
@@ -465,7 +466,7 @@ int main(int argc, char* argv[]) {
 
     cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     time_arr[score_idx] = cpu_time_used;
-    printf("Scorul pt var6 (jki) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
+    printf(statsCliFormat,score_idx, "jki", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
     for(int i=0;i<N;++i)
@@ -505,7 +506,7 @@ int main(int argc, char* argv[]) {
 
     cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     time_arr[score_idx] = cpu_time_used;
-    printf("Scorul pt var7 (Block) este %lld, iar timpul de executie este %f, ratia scor/timp = %f\n", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
+    printf(statsCliFormat,score_idx, "block", score[score_idx], cpu_time_used, score[score_idx] / cpu_time_used);
     score_idx++;
 
     fprintf(
